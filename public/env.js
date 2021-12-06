@@ -10,35 +10,36 @@ socket.on('number', (msg) => {
 
 function createProjectCard(project) {
     return `
-  <div class="col s6 m4" id="project-id-${project.id}">
+  
   <div class="card">
-    <div class="card-image">
-      <img src="${project.img ? project.img : 'assets/ale2.jpg'}" style="height:250px">
-      <span class="card-title">${project.title}</span>
-    </div>
     <div class="card-content">
-      <p>${project.info}</p>
+      <p>${project.title}</p>
     </div>
-    <div class="card-action">
-      <a href="project.html?pid=${project.id}">Open Project</a>
+    <div class="card-tabs">
+      <ul class="tabs tabs-fixed-width">
+        <li class="tab"><a href="#test4">Test 1</a></li>
+        <li class="tab"><a class="active" href="#test5">Test 2</a></li>
+        <li class="tab"><a href="#test6">Test 3</a></li>
+      </ul>
     </div>
-  </div>
+    <div class="card-content grey lighten-4">
+      <div id="test4">report 1</div>
+      <div id="test5">report 2</div>
+      <div id="test6">report 3</div>
+    </div>
   </div>
 `;
 }
 
 $(document).ready(function() {
-    console.log('Ready')
-
-    $("#main-nav").load('component/navbar.html', () => {
-        $('.sidenav').sidenav();
-    })
+    $('#slide-out').sidenav();
 
     //test get call
     $.get('/projects', (result) => {
         for (let project of result) {
-            $('#projects').append(createProjectCard(project));
+            $('#projects-list').append(createProjectCard(project));
         }
+      console.log(result)
     })
-
+    
 })

@@ -5,7 +5,7 @@ let app = express();
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 5050;
 
 app.use(express.static(__dirname + '/public'));
 
@@ -16,38 +16,45 @@ app.get("/test", function(request, response) {
 
 let id = 1;
 
-const projects = [{
-        id: id,
+const projects = [];
+       for (let id=1; id<11; id++) 
+       {
+           projects.push({projectID: id,
+            title: 'cyberproject '+ id,
+            info:`This is the project number ${id} we are creating here`,
+            img: null,
+           });
+       }
+       // title: "project " + id,
+      //  info: `This is the project number ${id} we are creating here`,
+      //  img: null,
+    
+  /*  {
+        id: ++id,
         title: "project " + id,
         info: `This is the project number ${id} we are creating here`,
         img: null,
     },
-    {
+    /*{
+        id: ++id,
+        title: "project " + id,
+        info: `This is the project number ${id} we are creating here`,
+        img: null,
+    },
+    /*{
         id: ++id,
         title: "project " + id,
         info: `This is the project number ${id} we are creating here`,
         img: null,
     },
     {
-        id: ++id,
+   /*     id: ++id,
         title: "project " + id,
         info: `This is the project number ${id} we are creating here`,
         img: null,
-    },
-    {
-        id: ++id,
-        title: "project " + id,
-        info: `This is the project number ${id} we are creating here`,
-        img: null,
-    },
-    {
-        id: ++id,
-        title: "project " + id,
-        info: `This is the project number ${id} we are creating here`,
-        img: null,
-    },
+ //   },
 ]
-
+*/
 
 
 app.get("/projects", function(request, response) {
@@ -74,4 +81,4 @@ http.listen(port, () => {
 });
 
 //this is only needed for Cloud foundry 
-// require("cf-deployment-tracker-client").track();
+ require("cf-deployment-tracker-client").track();
