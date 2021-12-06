@@ -1,6 +1,6 @@
-Hello by Alessio:
+Hello by Abosede:
 
-This is my boilerplate for creating simple new applications. 
+This is my an updated server and index page for your project work in cyber security.
 This boilerplate is very basic and should be used as a training ground
 
 It comprises of 
