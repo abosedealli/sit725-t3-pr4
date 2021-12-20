@@ -1,13 +1,16 @@
-let express = require("express");
+let express= require("express");
 let app = express();
 
 //var app = require('express')();
-let http = require('http').createServer(app);
-let io = require('socket.io')(http);
+let http =  require('http').createServer(app);
+let io = require(' socket.io')(http);
+//const bodyParser = require ('body-parser');
+
 
 var port = process.env.PORT || 5050;
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.json());
 
 app.get("/test", function(request, response) {
     var user_name = request.query.user_name;
@@ -61,7 +64,16 @@ app.get("/projects", function(request, response) {
     response.json(projects);
 });
 
+app.post("/projects", function(request, response){
+    const project = request.body;
+    if (project) {projects.push(project) ;
+      } else 
+        {response.sendStatus(501);
+      
+        }
+        response.sendStatus(204);
 
+});
 
 //socket test
 io.on('connection', (socket) => {

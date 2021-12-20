@@ -34,6 +34,12 @@ function createProjectCard(project) {
 $(document).ready(function() {
     $('#slide-out').sidenav();
 
+      $('.modal').modal();
+   $('#save-project').click((e)=>{
+    alert("You project saved!");
+  });
+
+
     //test get call
     $.get('/projects', (result) => {
         for (let project of result) {
@@ -41,5 +47,4 @@ $(document).ready(function() {
         }
       console.log(result)
     })
-    
-})
+  }) 
