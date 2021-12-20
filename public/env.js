@@ -1,5 +1,4 @@
 // connect to the socket
-
 let socket = io();
 
 
