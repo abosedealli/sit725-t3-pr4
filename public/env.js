@@ -59,7 +59,7 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
   console.log(response);
-  $('#projects-list').append(projectCard(data));
+  $('#projects-list').append(createprojectCard(data));
   $('.modal').modal('close');
   $('#project-id').val('');
   $('#project-title').val('');

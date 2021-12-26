@@ -14,7 +14,7 @@ module.exports = {
             }
 
             dbConnection = db.db("AICyberCollection");
-            console.log("Connect to monogo atlas");
+            console.log("Connect to mongo atlas");
 
             return calback();
         });
