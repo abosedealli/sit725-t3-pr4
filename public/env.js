@@ -9,7 +9,7 @@ socket.on('number', (msg) => {
 
 function createProjectCard(project) {
     return `
-  
+    <div class="col s6 m4 l3 xl2" id="project-id-${project.projectID}">
   <div class="card">
     <div class="card-content">
       <p>${project.title}</p>
@@ -31,14 +31,18 @@ function createProjectCard(project) {
 }
 
 $(document).ready(function() {
-    $('#slide-out').sidenav();
+  console.log('Ready')
+  $('#slide-out').sidenav();
 
-      $('.modal').modal();
-   $('#save-project').click((e)=>{
-    alert("You project saved!");
+  $('.modal').modal();
+  $('#insert-project').click(()=>{
+    createProjectCard();
   });
 
-const data = {
+  function createProjectCard(){
+
+
+const project = {
   projectID: $('#project-id').val(),
   title: $('#project-title').val(),
   info: $('#project-description').val(),
@@ -54,16 +58,17 @@ var settings = {
   "headers": {
     "Content-Type": "application/json"
   },
-  "data": JSON.stringify(data),
+  "data": JSON.stringify(project),
 };
-
+}
 $.ajax(settings).done(function (response) {
   console.log(response);
-  $('#projects-list').append(createprojectCard(data));
+  $('#projects-list').append(createprojectCard(project));
   $('.modal').modal('close');
   $('#project-id').val('');
   $('#project-title').val('');
   $('#project-description').val('');
+  $('#project-file').val('');
 });
     //test get call
     $.get('/projects', (result) => {
@@ -73,3 +78,33 @@ $.ajax(settings).done(function (response) {
       console.log(result)
     })
   }) 
+
+  function deleteProject(projectId) {
+    var settings = {
+      "url": `/api/projects/${projectId}`,
+      "method": "DELETE",
+      "timeout": 0,
+    };
+    
+    $.ajax(settings).done(function (response) {
+      alert(`#project-id-${projectId}`);
+        $(`#project-id-${projectId}`).remove();
+    });
+  }
+  
+  function getBase64(file) {
+  
+    return new Promise((resolve, reject) => {
+  
+      const reader = new FileReader();
+  
+      reader.readAsDataURL(file);
+  
+      reader.onload = () => resolve(reader.result);
+  
+      reader.onerr = err => reject(err);
+  
+    });
+  
+  }
+  

@@ -1,30 +1,31 @@
-const express = Require("express");
-const router = express.Router();
+let express = require("express");
+let router = express.Router();
 
 let controller = require("../controller/projectsControl");
 
 
-router.get('/', (require, response) => {
-    controller.getAllProjects(response);
+router.get('/', (request, response) => {
+    controller.getProjects(response);
 });
 
 
-router.get('/:id', (require, response) => {
-    controller.getProjectByID(require.params.id, response);
+router.get('/:id', (request, response) => {
+    response.send(Hello);
 });
 
 
-router.post('/', (require, response) => {
-    controller.insertProject(require.body, response);
+router.post('/', (request, response) => {
+    controller.insertProject(request.body, response);
 });
 
-router.put('/:id', (require, response) => {
-    //require.body
-    response.send("Hello from project update " + require.params.id + " resources API ");
+router.put('/:id', (request, response) => {
+    //request.body
+    response.sendStatus(204);
+   
 });
 
-router.delete('/:id', (require, response) => {
-    controller.deleteProject(require.params.id, response);
-});
+router.delete('/:id', (request, response) => {
+    controller.deleteProject(request.params.id,response);
+})
 
 module.exports = router;
