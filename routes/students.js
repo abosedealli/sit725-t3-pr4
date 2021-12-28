@@ -8,7 +8,6 @@ let app = express();
 let http = require("http").createServer(app);
 let io = require('socket.io')(http);
 
-let dbo = require('./database/db');
 let projectRoute = require("./routes/projects");
 let studentRoute = require("./routes/students");
 //const bodyParser = require ('body-parser');
@@ -39,7 +38,7 @@ for (let id = 1; id < 11; id++) {
   });
 }
 
-app.get("/projects", function (request, response) {
+/*app.get("/projects", function (request, response) {
   dbo.get()
   response.json(projects);
 });
@@ -54,10 +53,10 @@ app.post("/projects", function (request, response) {
      response.sendStatus(501);
   }
   
-});
+});*/
 
 //socket test
-io.on("connection", (socket) => {
+/*io.on("connection", (socket) => {
   console.log("a user connected");
   socket.on("disconnect", () => {
     console.log("user disconnected");
@@ -65,8 +64,8 @@ io.on("connection", (socket) => {
   setInterval(() => {
     socket.emit("number", parseInt(Math.random() * 10));
   }, 1000);
-});*/
-
+});
+*/
 dbo.connectToDatabase(function (err) {
   if (err) {
     console.error(err);
