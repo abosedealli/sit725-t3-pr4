@@ -22,7 +22,7 @@ app.use(cors());
 app.use('/api/projects',projectRoute);
 app.use('/api/students',studentRoute);
 
-app.get("/test", function (request, response) {
+/*app.get("/test", function (request, response) {
   var user_name = request.query.user_name;
   response.end("Hello " + user_name + "!");
 });
