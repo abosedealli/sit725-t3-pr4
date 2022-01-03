@@ -10,7 +10,7 @@ Jquery for advanced manipulations
 Materialize for the UI interface
 Socket IO for real time comunications
 
-
+port 8080
 After installing, run the server using
 
     npm start
