@@ -14,7 +14,7 @@ module.exports = {
             }
 
             dbConnection = db.db("AICyberCollection");
-            console.log("Connect to mongo atlas");
+            console.log("Connect to mongoDb atlas");
 
             return calback();
         });
@@ -22,5 +22,8 @@ module.exports = {
 
     getDb: function () {
         return dbConnection;
+    },
+    disconnect : () => {
+        client.close();
     }
 }
