@@ -1,7 +1,9 @@
 Hello by Abosede:
 
 This is my an updated server and index page for your project work in cyber security.
-This boilerplate is very basic and should be used as a training ground
+Currently mvc model has been updated and tesing is an evidence of unit testing.
+mocha chai request included, reporter spec..
+allowing assetion library expect.js, chai,  TDD assert style providinga classical feel
 
 It comprises of 
 Jquery for advanced manipulations
