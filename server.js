@@ -19,15 +19,29 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.json({limit: '50mb'}));
 app.use(cors());
 
+app.use((req, res,next)=> {
+    req.io  = io;
+    return next();
+});
+
 app.use('/api/projects',projectRoute);
 app.use('/api/students',studentRoute);
 
-/*app.get("/test", function (request, response) {
-  var user_name = request.query.user_name;
-  response.end("Hello " + user_name + "!");
+app.get("/add/:n1/:n2", function (request, response) {
+  
+  const a =parseInt(request.params.n1);
+  const b = parseInt(request.params.n2);
+  const result = a + b || null;
+    console.log(result);
+    if (result == null) {
+    response.status(400).json({error:'input is wrong'});
+    } else 
+    {response.json({ result: result });}
+  /*var user_name = request.query.user_name;
+  response.end("Hello " + user_name + "!");*/
 });
 
-let id = 1;
+/*let id = 1;
 
 const projects = [];
 for (let id = 1; id < 11; id++) {
@@ -38,9 +52,9 @@ for (let id = 1; id < 11; id++) {
     img: null,
   });
 }
-
+*/
 app.get("/projects", function (request, response) {
-  dbo.get()
+  dbo.getDb().
   response.json(projects);
 });
 
@@ -55,9 +69,7 @@ app.post("/projects", function (request, response) {
   }
   
 });
-
-//socket test
-io.on("connection", (socket) => {
+/*io.on("connection", (socket) => {
   console.log("a user connected");
   socket.on("disconnect", () => {
     console.log("user disconnected");
@@ -66,6 +78,15 @@ io.on("connection", (socket) => {
     socket.emit("number", parseInt(Math.random() * 10));
   }, 1000);
 });*/
+
+const onConnection = (socket) => { 
+  socket.on("chat:msg", (msg) => {
+      socket.broadcast.emit("chat:brodcast",msg);
+      console.log(msg);
+  })
+  console.log("a new user is connected");
+}
+io.on("connection", onConnection);
 
 dbo.connectToDatabase(function (err) {
   if (err) {
