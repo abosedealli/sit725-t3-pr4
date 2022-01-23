@@ -34,5 +34,5 @@ const deleteProject = (id,response) => {
     });
 }
 
-module.exports= { getAllProjects, getProjectByID, insertProject, deleteProject 
+module.exports= { getAllProjects, getProjectByID, insertProject, deleteProject }
 }
