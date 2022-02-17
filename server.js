@@ -8,7 +8,6 @@ let app = express();
 let http = require("http").createServer(app);
 let io = require('socket.io')(http);
 
-let dbo = require('./database/db');
 let projectRoute = require("./routes/projects");
 let studentRoute = require("./routes/students");
 //const bodyParser = require ('body-parser');
@@ -19,7 +18,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.json({limit: '50mb'}));
 app.use(cors());
 
-app.use((req, res,next)=> {
+app.use((req, res, next)=> {
     req.io  = io;
     return next();
 });
@@ -34,12 +33,10 @@ app.get("/add/:n1/:n2", function (request, response) {
   const result = a + b || null;
     console.log(result);
     if (result == null) {
-    response.status(400).json({error:'input is wrong'});
+    response.status(400).json({error:'input is wrong, two number expected'});
     } else 
     {response.json({ result: result });}
-  /*var user_name = request.query.user_name;
-  response.end("Hello " + user_name + "!");*/
-});
+  });
 
 /*let id = 1;
 
@@ -69,15 +66,6 @@ app.post("/projects", function (request, response) {
   }
   
 });
-/*io.on("connection", (socket) => {
-  console.log("a user connected");
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
-  setInterval(() => {
-    socket.emit("number", parseInt(Math.random() * 10));
-  }, 1000);
-});*/
 
 const onConnection = (socket) => { 
   socket.on("chat:msg", (msg) => {
@@ -99,5 +87,4 @@ dbo.connectToDatabase(function (err) {
   });
 });
 
-//this is only needed for Cloud foundry
 require("cf-deployment-tracker-client").track();

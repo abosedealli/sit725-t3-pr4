@@ -1,21 +1,21 @@
-let express = require("express");
-let router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-let controller = require("../controller/projectsControl");
+const projectController= require("../controller/projectsControl");
 
 
 router.get('/', (request, response) => {
-    controller.getProjects(response);
+    projectController.getProjects(response);
 });
 
 
 router.get('/:id', (request, response) => {
-    response.send(Hello);
+    projectController.getProjectByID(request.params.id,response);
 });
 
 
 router.post('/', (request, response) => {
-    controller.insertProject(request.body, response);
+    projectController.insertProject(request.body, response);
 });
 
 router.put('/:id', (request, response) => {
@@ -25,7 +25,7 @@ router.put('/:id', (request, response) => {
 });
 
 router.delete('/:id', (request, response) => {
-    controller.deleteProject(request.params.id,response);
+    projectController.deleteProject(request.params.id,response);
 })
 
 module.exports = router;

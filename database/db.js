@@ -7,16 +7,16 @@ let dbConnection;
 
 
 module.exports = {
-    connectToDatabase: function (calback) {
+    connectToDatabase: function (callback) {
         client.connect(function (err, db) {
             if (err || !db) {
-                return calback(err);
+                return callback(err);
             }
 
             dbConnection = db.db("AICyberCollection");
             console.log("Connect to mongoDb atlas");
 
-            return calback();
+            return callback();
         });
     },
 
