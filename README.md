@@ -1,24 +1,27 @@
-Hello by Abosede:
+Hello thi is Abosede:
 
-This is my an updated server and index page for your project work in cyber security.
-This boilerplate is very basic and should be used as a training ground
+This is my an updated service page for your project work in cyber security.
+This boilerplate is very basic and should be used as a training ground. It features basic CRUD functions, it uses MVC -route and controller, it is based on Materialize for the UI interface  -html/css, and shared on github -public state. 
 
-It comprises of 
-Jquery for advanced manipulations
-Materialize for the UI interface
-Socket IO for real time comunications
+Small business and large organisation cn use navigation bar to create a project card.
+This is quite basic and handy.
+Prior to this work, a wireframe was done and a step by step weekly sessions make up this work.
+It comprises of Javascript, , Socket IO for real time comunicationsuses ajax jquery for advanced manipulations
 
 
 After installing, run the server using
 
+
+
     npm start
+npm-run-start-dev
 
 
-
+This is run on port 5050- Server running at http://127.0.0.1:8080/
 If instead, you get something like the following, someone is already
-using the default port of 8080:
+using the default port of 5050,
 
-    Server running at http://127.0.0.1:8080/
+   
 
     events.js:72
         throw er; // Unhandled 'error' event
@@ -33,17 +36,16 @@ using the default port of 8080:
 Once the server is running, test it by visiting the following URL in your
 browser:
 
-    http://localhost:8080/
+    http://localhost:5050/
 
 Next, test it by visiting the following URL in your
 browser:
 
-    http://localhost:8080/hello
+    http://localhost:5050/#!
 
-When you visit the above url the content will be Hello World
-
-    Hello World
-
+folders------
+Public
+modules
 
 
 

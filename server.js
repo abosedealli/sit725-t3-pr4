@@ -50,22 +50,22 @@ for (let id = 1; id < 11; id++) {
   });
 }
 */
-app.get("/projects", function (request, response) {
-  dbo.getDb().
-  response.json(projects);
-});
+// app.get("/projects", function (request, response) {
+//   const projects = dbo.getDb();
+//   response.json(projects);
+// });
 
-app.post("/projects", function (request, response) {
-  const project = request.body;
-  console.log(project);
-  if (project && project.id) {
-    projects.push(project);
-    response.sendStatus(204);
-  } else {
-     response.sendStatus(501);
-  }
+// app.post("/projects", function (request, response) {
+//   const project = request.body;
+//   console.log(project);
+//   if (project && project.id) {
+//     projects.push(project);
+//     response.sendStatus(204);
+//   } else {
+//      response.sendStatus(501);
+//   }
   
-});
+// });
 
 const onConnection = (socket) => { 
   socket.on("chat:msg", (msg) => {

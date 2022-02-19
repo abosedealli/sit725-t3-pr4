@@ -2,12 +2,8 @@
     width: 200px;
 }
 
-.title {
-    color: rgb(255, 255, 255);
-}
-
-.mainText {
-    color: rgb(255, 255, 255);
+.title, .mainText {
+    color: #bf58c0;
 }
 
 body {
